@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/styles.scss"],
-  "sourcesContent": ["html {\n  width: 100vw;\n  height: 100vh;\n  font-size: 20px;\n  font-family: Arial, Helvetica, sans-serif;\n  --clr-bg: #fafafa12;\n  --clr-bg2: #18181b;\n  --clr-bg3: #27272a;\n  --clr-primary: cadetblue;\n}\n\nbody {\n  width: 100%;\n  height: 100%;\n}\n\nhtml, body {\n  margin: 0;\n  padding: 0;\n  background-color:hsl(240 10% 4%);\n  background-image: radial-gradient(var(--clr-bg) 1px, transparent 0);\n  background-size: 16px 16px;\n}\n\ninput {\n  color: white;\n  font-size: 1rem;\n  background-color: transparent;\n  border: none;\n\n  &:focus-visible {\n    border: none;\n    outline: none;\n  }\n\n  &::placeholder {\n    color: var(--clr-bg3);\n  }\n}\n\n.iconButton {\n  border: none;\n  background-color: var(--clr-bg2);\n  color: white;\n  font-size: 1rem;\n\n  :hover {\n    color: var(--clr-primary);\n  }\n}\n"],
-  "mappings": ";AAAA;AACE,SAAA;AACA,UAAA;AACA,aAAA;AACA;IAAA,KAAA;IAAA,SAAA;IAAA;AACA,YAAA;AACA,aAAA;AACA,aAAA;AACA,iBAAA;;AAGF;AACE,SAAA;AACA,UAAA;;AAGF;AAAA;AACE,UAAA;AACA,WAAA;AACA,oBAAA,IAAA,GAAA,EAAA,GAAA,EAAA;AACA,oBAAA,gBAAA,IAAA,UAAA,GAAA,EAAA,YAAA;AACA,mBAAA,KAAA;;AAGF;AACE,SAAA;AACA,aAAA;AACA,oBAAA;AACA,UAAA;;AAEA,KAAA;AACE,UAAA;AACA,WAAA;;AAGF,KAAA;AACE,SAAA,IAAA;;AAIJ,CAAA;AACE,UAAA;AACA,oBAAA,IAAA;AACA,SAAA;AACA,aAAA;;AAEA,CANF,WAME;AACE,SAAA,IAAA;;",
-  "names": []
-}
