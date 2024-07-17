@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/login/login.component.scss"],
+  "sourcesContent": [".loginContainer {\r\n  display: flex;\r\n  flex-direction: column;\r\n  background-color: var(--clr-bg2);\r\n  padding: 16px;\r\n  border-radius: 5px;\r\n  gap: 8px;\r\n}\r\n\r\ninput:first-child {\r\n  border-bottom: 1px solid var(--clr-bg3);\r\n}\r\n\r\nbutton {\r\n  background-color: var(--clr-bg2);\r\n  border: 1px solid var(--clr-bg3);\r\n  border-radius: 3px;\r\n  color: white;\r\n  font-size: 1rem;\r\n  font-family: Arial, Helvetica, sans-serif;\r\n\r\n  &:active {\r\n    border-color: white;\r\n  }\r\n}\r\n"],
+  "mappings": ";AAAA,CAAA;AACE,WAAA;AACA,kBAAA;AACA,oBAAA,IAAA;AACA,WAAA;AACA,iBAAA;AACA,OAAA;;AAGF,KAAA;AACE,iBAAA,IAAA,MAAA,IAAA;;AAGF;AACE,oBAAA,IAAA;AACA,UAAA,IAAA,MAAA,IAAA;AACA,iBAAA;AACA,SAAA;AACA,aAAA;AACA;IAAA,KAAA;IAAA,SAAA;IAAA;;AAEA,MAAA;AACE,gBAAA;;",
+  "names": []
+}
