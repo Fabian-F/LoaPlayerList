@@ -3,42 +3,46 @@
   height: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: baseline;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .search {
+  position: relative;
   background-color: var(--clr-bg2);
   border: 1px solid var(--clr-bg3);
   color: white;
-  padding: 8px 16px;
-  border-radius: 3px;
+  border-radius: 5px;
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: 8px;
+  scrollbar-color: var(--clr-bg3) transparent;
 }
 
 .searchbar {
-  padding-bottom: 8px;
+  top: 0;
+  position: sticky;
+  background-color: var(--clr-bg2);
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
   border-bottom: 1px solid var(--clr-bg3);
-}
-
-.searchinput {
-  color: white;
-  font-size: 1rem;
-  background-color: transparent;
-  border: none;
-
-  &:focus-visible {
-    border: none;
-    outline: none;
-  }
-
-  &::placeholder {
-    color: var(--clr-bg3);
-  }
+  padding: 8px 0px;
 }
 
 .findings {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
+  padding: 0px 8px 8px 8px;
 }
 
 .findingItem {
@@ -50,5 +54,33 @@
 
   &:last-child {
     border: none;
+  }
+}
+
+.addButton {
+  border: 1px solid var(--clr-bg3);
+  border-radius: 3px;
+  width: 2rem;
+  height: 2rem;
+  margin: 0px 8px;
+}
+
+.switchButton {
+  width: 2rem;
+  height: 2rem;
+  border-right: 1px solid var(--clr-bg3);
+}
+
+.logout {
+  border: 1px solid var(--clr-bg3);
+  background-color: var(--clr-primary);
+  color: black;
+  font-size: 1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+
+  :hover {
+    color: var(--clr-primary);
   }
 }

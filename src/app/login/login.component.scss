@@ -1,0 +1,25 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr-bg2);
+  padding: 16px;
+  border-radius: 5px;
+  gap: 8px;
+}
+
+input:first-child {
+  border-bottom: 1px solid var(--clr-bg3);
+}
+
+button {
+  background-color: var(--clr-bg2);
+  border: 1px solid var(--clr-bg3);
+  border-radius: 3px;
+  color: white;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:active {
+    border-color: white;
+  }
+}

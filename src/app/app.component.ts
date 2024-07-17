@@ -1,14 +1,23 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { StringUtils } from './stringUtils';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { faFaceSmileBeam, faPoo, faTrashCan, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from './auth.service';
+import { StorageService } from './storage.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+  loggedIn = false;
   isGoodPlayerMode = false;
+  faTrashCan = faTrashCan;
+  faUserPlus = faUserPlus;
+  faFaceSmileBeam = faFaceSmileBeam;
+  faPoo = faPoo;
 
   searchControl = new FormControl();
 
@@ -16,12 +25,28 @@ export class AppComponent {
   goodPlayerList: Array<string> = [];
   findingsList: Array<string> = [];
 
+  destroyed$ = new Subject<void>();
+
   @ViewChild('searchInput')
   searchInput!: ElementRef<HTMLInputElement>;
 
-  constructor() {
-    this.badPlayerList = this.getBadPlayerList();
-    this.goodPlayerList = this.getGoodPlayerList();
+  constructor(private authService: AuthService, private storageService: StorageService) {
+    this.authService.authState$.subscribe((aUser: any | null) => {
+      this.loggedIn = aUser !== null;
+    });
+    this.storageService.goodplayerlist$.pipe(takeUntil(this.destroyed$)).subscribe(data => {
+      this.goodPlayerList = data;
+      this.onInput();
+    });
+    this.storageService.badplayerlist$.pipe(takeUntil(this.destroyed$)).subscribe(data => {
+      this.badPlayerList = data;
+      this.onInput();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   switchPlayerMode() {
@@ -37,12 +62,15 @@ export class AppComponent {
   }
 
   onDelete(name: string) {
-    const arr = !this.isGoodPlayerMode ? this.badPlayerList : this.goodPlayerList;
-    arr.splice(arr.indexOf(name), 1);
-    const inFindingIdx = this.findingsList.indexOf(name);
-    if (inFindingIdx >= 0) {
-      this.findingsList.splice(inFindingIdx, 1);
+    if (!this.isGoodPlayerMode) {
+      this.storageService.removeBadPlayer(name);
+    } else {
+      this.storageService.removeGoodPlayer(name);
     }
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
   isAdded(name: string) {
@@ -53,9 +81,9 @@ export class AppComponent {
 
   addToList(name: string) {
     if (!this.isGoodPlayerMode) {
-      this.badPlayerList.push(name);
+      this.storageService.addBadPlayer(name);
     } else {
-      this.goodPlayerList.push(name);
+      this.storageService.addGoodPlayer(name);
     }
   }
 
@@ -71,13 +99,5 @@ export class AppComponent {
   findPlayers(input: string) {
     const searchArr = !this.isGoodPlayerMode ? this.badPlayerList : this.goodPlayerList;
     this.findingsList = searchArr.filter(name => name.toLowerCase().includes(input))
-  }
-
-  getGoodPlayerList(): Array<string> {
-    return ["Fabi"];
-  }
-
-  getBadPlayerList(): Array<string> {
-    return ["Test1", "Test2", "Test3", "Test4", "Test5", "Maxi"];
   }
 }

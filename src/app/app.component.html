@@ -1,22 +1,44 @@
-<div class="search">
-  <div class="searchbar">
-    <input type="checkbox" [(ngModel)]="isGoodPlayerMode" (change)="onInput()"/>
-    <input
-      #searchInput
-      class="searchinput"
-      placeholder="Name"
-      [formControl]="searchControl"
-      (input)="onInput()"
-      (keydown.shift.enter)="switchPlayerMode()"
-      (keydown.enter)="onAdd()"/>
-    <button (click)="onAdd()">+</button>
+@if (loggedIn) {
+  <div class="wrapper">
+    <div class="search">
+      <div class="searchbar">
+        <button (click)="switchPlayerMode()" class="iconButton switchButton"
+          [style]="'color: ' + (isGoodPlayerMode ? 'green' : 'brown')"
+        >
+          @if (isGoodPlayerMode) {
+            <fa-icon [icon]="faFaceSmileBeam"/>
+          }
+          @else {
+            <fa-icon [icon]="faPoo"/>
+          }
+        </button>
+        <input
+          #searchInput
+          class="searchInput"
+          placeholder="Name"
+          [formControl]="searchControl"
+          (input)="onInput()"
+          (keydown.shift.enter)="switchPlayerMode()"
+          (keydown.enter)="onAdd()"/>
+        <button (click)="onAdd()" class="iconButton addButton">
+          <fa-icon [icon]="faUserPlus"/>
+        </button>
+      </div>
+      <div class="findings">
+        <span *ngFor="let finding of (searchControl.value ? findingsList : (!isGoodPlayerMode ? badPlayerList : goodPlayerList))"
+          class="findingItem"
+        >
+          <span>{{ finding }}</span>
+          <button class="iconButton" (click)="onDelete(finding)">
+            <fa-icon [icon]="faTrashCan"/>
+          </button>
+        </span>
+      </div>
+    </div>
+    <button (click)="onLogout()" class="logout">Logout</button>
   </div>
-  <div class="findings">
-    <span *ngFor="let finding of (searchControl.value ? findingsList : (!isGoodPlayerMode ? badPlayerList : goodPlayerList))"
-      class="findingItem"
-    >
-      <span>{{ finding }}</span>
-      <button class="findingDelete" (click)="onDelete(finding)">-</button>
-    </span>
-  </div>
-</div>
+
+}
+@else {
+  <app-login/>
+}

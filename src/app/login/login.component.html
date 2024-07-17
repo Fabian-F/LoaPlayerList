@@ -1,0 +1,5 @@
+<div class="loginContainer">
+  <input placeholder="EMail" [formControl]="emailControl" (keydown.enter)="onLogin()" />
+  <input placeholder="Password" type="password" [formControl]="passwordControl" (keydown.enter)="onLogin()" />
+  <button (click)="onLogin()">Login</button>
+</div>

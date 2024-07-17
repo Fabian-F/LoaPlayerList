@@ -6,6 +6,7 @@ html {
   --clr-bg: #fafafa12;
   --clr-bg2: #18181b;
   --clr-bg3: #27272a;
+  --clr-primary: cadetblue;
 }
 
 body {
@@ -19,4 +20,31 @@ html, body {
   background-color:hsl(240 10% 4%);
   background-image: radial-gradient(var(--clr-bg) 1px, transparent 0);
   background-size: 16px 16px;
+}
+
+input {
+  color: white;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--clr-bg3);
+  }
+}
+
+.iconButton {
+  border: none;
+  background-color: var(--clr-bg2);
+  color: white;
+  font-size: 1rem;
+
+  :hover {
+    color: var(--clr-primary);
+  }
 }
