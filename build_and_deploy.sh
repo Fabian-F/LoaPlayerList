@@ -2,7 +2,7 @@
 
 git checkout gh-pages
 
-git merge main
+git merge master
 
 npm run build-ghpages
 
@@ -13,4 +13,4 @@ git commit -m "Build $current_date"
 
 git push
 
-git checkout main
+git checkout master
